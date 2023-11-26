@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:horariosmovil/src/pages/home_pages.dart';
 
 class MyApp extends StatelessWidget{
   @override
@@ -6,10 +7,10 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       title: 'APP',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.blue,
       ),
-      home: const HomePage(
-        title: 'Pantalla Deber - Programación Móvil - Santiago Venegas',
+      home: const HomePages(
+        //title: 'Pantalla Deber - Programación Móvil - Santiago Venegas',
       ),
     );
   }
