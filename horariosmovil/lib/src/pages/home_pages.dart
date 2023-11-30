@@ -9,7 +9,7 @@ class HomePages extends StatefulWidget {
   static void navigateToMenuLateral(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const InicioPages()),
+      MaterialPageRoute(builder: (context) => const MenuLateral()),
     );
   }
 

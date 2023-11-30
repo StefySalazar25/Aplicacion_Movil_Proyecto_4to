@@ -12,14 +12,17 @@ class _InicioPagesState extends State<InicioPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          MenuLateral(),
-          // Otros widgets que quieras mostrar en la página de inicio
-        ],
+      drawer: const MenuLateral(), // The MenuLateral widget is added here
+      appBar: AppBar(
+        title: const Text('Inicio'),
+      ),
+      body: SafeArea(
+        child: ListView(
+          children: const <Widget>[
+            // Other widgets you want to display on the home page
+          ],
+        ),
       ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
   }
 }
