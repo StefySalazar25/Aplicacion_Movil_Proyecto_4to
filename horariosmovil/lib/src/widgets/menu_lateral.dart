@@ -7,8 +7,11 @@ class MenuLateral extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sistema de Gestión de Horarios ITS YAVIRAC"),
-        backgroundColor: Color.fromARGB(255, 84, 100, 243),
+        title: Text(
+          "Sistema de Gestión de Horarios ITS YAVIRAC",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromARGB(255, 236, 116, 61),
       ),
       body: Center(
         child: Center(
@@ -27,7 +30,8 @@ class MenuLateral extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, "Home");
+                Navigator.pushNamed(context,
+                    "Home"); // Navegar a la ruta "Home" al hacer clic en el botón
               },
               child: ListTile(
                 leading: Icon(Icons.home),

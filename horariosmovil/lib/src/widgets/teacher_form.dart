@@ -103,88 +103,100 @@ class _TeacherFormState extends State<TeacherForm> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextFormField(
-                controller: _cedulaController,
-                decoration: InputDecoration(labelText: 'Cédula'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa la cédula del docente';
-                  }
-                  return null;
-                },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _cedulaController,
+                      decoration: InputDecoration(labelText: 'Cédula'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa la cédula del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      controller: _nombresController,
+                      decoration: InputDecoration(labelText: 'Nombres'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa los nombres del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      controller: _apellidosController,
+                      decoration: InputDecoration(labelText: 'Apellidos'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa los apellidos del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      controller: _contactoController,
+                      decoration: InputDecoration(labelText: 'Contacto'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa la información de contacto del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(labelText: 'Email'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa el email del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      controller: _ramaController,
+                      decoration: InputDecoration(labelText: 'Rama'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa la rama del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.0),
+                    TextFormField(
+                      controller: _facultadController,
+                      decoration: InputDecoration(labelText: 'Facultad'),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor, ingresa la facultad del docente';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
               ),
-              TextFormField(
-                controller: _nombresController,
-                decoration: InputDecoration(labelText: 'Nombres'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa los nombres del docente';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _apellidosController,
-                decoration: InputDecoration(labelText: 'Apellidos'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa los apellidos del docente';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _contactoController,
-                decoration: InputDecoration(labelText: 'Contacto'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa la información de contacto del docente';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa el email del docente';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _ramaController,
-                decoration: InputDecoration(labelText: 'Rama'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa la rama del docente';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _facultadController,
-                decoration: InputDecoration(labelText: 'Facultad'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, ingresa la facultad del docente';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text('Enviar'),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: _submitForm,
+              child: Text('Enviar'),
+            ),
+          ],
         ),
       ),
     );

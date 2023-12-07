@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:horariosmovil/src/pages/inicio.dart';
+import 'package:horariosmovil/src/pages/pruebas.dart';
 import 'package:horariosmovil/src/widgets/menu_lateral.dart';
 import 'package:horariosmovil/src/widgets/reset_password.dart';
 
@@ -9,7 +10,7 @@ class HomePages extends StatefulWidget {
   static void navigateToMenuLateral(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const MenuLateral()),
+      MaterialPageRoute(builder: (context) => InicioPages()),
     );
   }
 
@@ -60,11 +61,6 @@ class _HomePagesState extends State<HomePages> {
               ],
               begin: Alignment.topCenter,
             ),
-            image: DecorationImage(
-              image: AssetImage(
-                  'images/logo_yavirac.png'), // Reemplaza con la ruta de tu imagen
-              fit: BoxFit.cover,
-            ),
           ),
           child: ListView(
             padding: EdgeInsets.symmetric(
@@ -77,6 +73,13 @@ class _HomePagesState extends State<HomePages> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Center(
+                      child: Image.asset(
+                        'images/logo_yavirac.png', // Reemplaza con la ruta de tu imagen
+                        height: 140.0, // Ajusta la altura según tus necesidades
+                        width: 140.0, // Ajusta el ancho según tus necesidades
+                      ),
+                    ),
                     const Center(
                       child: Text("Horarios"),
                     ),
