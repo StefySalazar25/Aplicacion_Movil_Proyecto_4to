@@ -1,82 +1,89 @@
+// widgets/lista_widget.dart
+
 import 'package:flutter/material.dart';
+import 'package:horariosmovil/src/models/teacher.dart';
+// Asegúrate de importar la clase Teacher
 
-class PaginationExample extends StatefulWidget {
-  @override
-  _PaginationExampleState createState() => _PaginationExampleState();
-}
+class ListaWidget extends StatelessWidget {
+  final List<Teacher> items;
 
-class _PaginationExampleState extends State<PaginationExample> {
-  ScrollController _scrollController = ScrollController();
-  List<int> _data = List.generate(50, (index) => index + 1);
-  bool _isLoading = false;
-  int _pageNumber = 1;
-  int _pageSize = 10;
-  
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_scrollListener);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _scrollListener() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
-      _loadMoreData();
-    }
-  }
-
-  Future<void> _loadMoreData() async {
-    if (!_isLoading) {
-      setState(() {
-        _isLoading = true;
-      });
-
-      // Simular una llamada a la API para obtener más datos
-      await Future.delayed(Duration(seconds: 2));
-
-      setState(() {
-        _isLoading = false;
-        _pageNumber++;
-        _data.addAll(List.generate(_pageSize, (index) => index + (_pageNumber * _pageSize) + 1));
-      });
-    }
-  }
+  ListaWidget({required this.items});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Ejemplo de Paginación'),
-      ),
-      body: ListView.builder(
-        controller: _scrollController,
-        itemCount: _data.length + 1,
-        itemBuilder: (context, index) {
-          if (index < _data.length) {
-            return ListTile(
-              title: Text('Elemento ${_data[index]}'),
-            );
-          } else {
-            return _buildLoader();
-          }
-        },
-      ),
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(
+              '${items[index].nombresDocente} ${items[index].apellidosDocente}'),
+          onTap: () {
+            _mostrarOpciones(context, items[index]);
+          },
+        );
+      },
     );
   }
 
-  Widget _buildLoader() {
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
+  void _mostrarOpciones(BuildContext context, Teacher selectedItem) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                title: Text('ID: ${selectedItem.idDocente}'),
+              ),
+              ListTile(
+                title: Text('Contacto: ${selectedItem.contactoDocente}'),
+              ),
+              ListTile(
+                title: Text('Email: ${selectedItem.emailDocente}'),
+              ),
+              Divider(), // Añade un separador
+              ListTile(
+                leading: Icon(Icons.edit),
+                title: Text(
+                    'Editar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _editarElemento(context, selectedItem);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.delete),
+                title: Text(
+                    'Eliminar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _eliminarElemento(context, selectedItem);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _editarElemento(BuildContext context, Teacher selectedItem) {
+    // Lógica para editar el elemento seleccionado
+    // Aquí puedes mostrar un formulario de edición con los datos del profesor
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text(
+              'Editar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}')),
+    );
+  }
+
+  void _eliminarElemento(BuildContext context, Teacher selectedItem) {
+    // Lógica para eliminar el elemento seleccionado
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text(
+              'Eliminar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}')),
     );
   }
 }
-
