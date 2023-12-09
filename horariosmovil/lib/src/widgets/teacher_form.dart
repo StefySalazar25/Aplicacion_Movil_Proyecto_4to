@@ -1,24 +1,5 @@
 import 'package:flutter/material.dart';
-
-class Teacher {
-  String cedula;
-  String nombres;
-  String apellidos;
-  String contacto;
-  String email;
-  String rama;
-  String facultad;
-
-  Teacher({
-    required this.cedula,
-    required this.nombres,
-    required this.apellidos,
-    required this.contacto,
-    required this.email,
-    required this.rama,
-    required this.facultad,
-  });
-}
+import 'package:horariosmovil/src/models/teacher.dart';
 
 class TeacherForm extends StatefulWidget {
   @override
@@ -57,27 +38,32 @@ class _TeacherFormState extends State<TeacherForm> {
       final email = _emailController.text;
       final rama = _ramaController.text;
       final facultad = _facultadController.text;
+      int estado = 0;
+      int rol = 0;
+      String contra = '';
 
       // Crear un objeto Teacher con los valores
       final teacher = Teacher(
-        cedula: cedula,
-        nombres: nombres,
-        apellidos: apellidos,
-        contacto: contacto,
-        email: email,
-        rama: rama,
-        facultad: facultad,
-      );
+          idDocente: cedula,
+          nombresDocente: nombres,
+          apellidosDocente: apellidos,
+          contactoDocente: contacto,
+          emailDocente: email,
+          idRama: rama,
+          idFacultad: facultad,
+          idEstado: estado,
+          idRol: rol,
+          contraseniaDocente: contra);
 
       // Realizar acciones con el objeto Teacher, como guardarlo en una lista o enviarlo a una base de datos
       print('Datos del docente:');
-      print('Cédula: ${teacher.cedula}');
-      print('Nombres: ${teacher.nombres}');
-      print('Apellidos: ${teacher.apellidos}');
-      print('Contacto: ${teacher.contacto}');
-      print('Email: ${teacher.email}');
-      print('Rama: ${teacher.rama}');
-      print('Facultad: ${teacher.facultad}');
+      print('Cédula: ${teacher.idDocente}');
+      print('Nombres: ${teacher.nombresDocente}');
+      print('Apellidos: ${teacher.apellidosDocente}');
+      print('Contacto: ${teacher.contactoDocente}');
+      print('Email: ${teacher.emailDocente}');
+      print('Rama: ${teacher.idRama}');
+      print('Facultad: ${teacher.idFacultad}');
 
       // Reiniciar los campos del formulario
       _cedulaController.clear();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:horariosmovil/src/pages/inicio.dart';
-import 'package:horariosmovil/src/pages/pruebas.dart';
+import 'package:horariosmovil/src/pages/add-listadocentes.dart';
 import 'package:horariosmovil/src/widgets/menu_lateral.dart';
 import 'package:horariosmovil/src/widgets/reset_password.dart';
 
