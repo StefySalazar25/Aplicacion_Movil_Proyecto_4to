@@ -22,4 +22,24 @@ class Teacher {
     required this.idEstado,
     required this.idRol,
   });
+
+}
+class DerivedTeacher extends Teacher {
+  DerivedTeacher({
+    required String contactoDocente,
+    required String emailDocente,
+    required String idFacultad,
+    required int idEstado,
+  }) : super(
+          idDocente: '',
+          nombresDocente: '',
+          apellidosDocente: '',
+          contactoDocente: contactoDocente,
+          emailDocente: emailDocente,
+          contraseniaDocente: '',
+          idRama: '',
+          idFacultad: idFacultad,
+          idEstado: idEstado,
+          idRol: 0,
+        );
 }
