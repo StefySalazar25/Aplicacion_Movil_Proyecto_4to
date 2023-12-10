@@ -180,7 +180,7 @@ class _TeacherFormState extends State<TeacherForm> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _submitForm,
-              child: Text('Enviar'),
+              child: Text('Agregar'),
             ),
           ],
         ),

@@ -2,12 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:horariosmovil/src/models/teacher.dart';
+import 'package:horariosmovil/src/widgets/editar_form.dart';
+
 // Asegúrate de importar la clase Teacher
 
 class ListaWidget extends StatelessWidget {
   final List<Teacher> items;
+  final Function(Teacher) onDeleteItem;
 
-  ListaWidget({required this.items});
+  ListaWidget({required this.items,
+  required this.onDeleteItem,});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,8 @@ class ListaWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(
-              '${items[index].nombresDocente} ${items[index].apellidosDocente}'),
+            '${items[index].nombresDocente} ${items[index].apellidosDocente}',
+          ),
           onTap: () {
             _mostrarOpciones(context, items[index]);
           },
@@ -42,20 +47,41 @@ class ListaWidget extends StatelessWidget {
               ListTile(
                 title: Text('Email: ${selectedItem.emailDocente}'),
               ),
-              Divider(), // Añade un separador
+              Divider(),
               ListTile(
-                leading: Icon(Icons.edit),
-                title: Text(
-                    'Editar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}'),
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                  ),
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                  ),
+                ),
+                title: Text('Editar'),
                 onTap: () {
                   Navigator.pop(context);
-                  _editarElemento(context, selectedItem);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditForm()),
+                  );
                 },
               ),
               ListTile(
-                leading: Icon(Icons.delete),
-                title: Text(
-                    'Eliminar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}'),
+                leading: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                  padding: EdgeInsets.all(8),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                ),
+                title: Text('Eliminar'),
                 onTap: () {
                   Navigator.pop(context);
                   _eliminarElemento(context, selectedItem);
@@ -68,22 +94,52 @@ class ListaWidget extends StatelessWidget {
     );
   }
 
-  void _editarElemento(BuildContext context, Teacher selectedItem) {
-    // Lógica para editar el elemento seleccionado
-    // Aquí puedes mostrar un formulario de edición con los datos del profesor
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content: Text(
-              'Editar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}')),
-    );
-  }
-
   void _eliminarElemento(BuildContext context, Teacher selectedItem) {
-    // Lógica para eliminar el elemento seleccionado
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-          content: Text(
-              'Eliminar ${selectedItem.nombresDocente} ${selectedItem.apellidosDocente}')),
+        content: Text('Eliminar elemento'),
+      ),
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Eliminar elemento'),
+          content: Text('¿Estás seguro de que deseas eliminar este elemento?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'Cancelar',
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ElevatedButton(
+              child: Text(
+                'Eliminar',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () {
+                // Llama a la función de devolución de llamada para eliminar el elemento
+                onDeleteItem(selectedItem);
+
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Elemento eliminado'),
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
