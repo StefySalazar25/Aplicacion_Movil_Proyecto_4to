@@ -59,8 +59,7 @@ class MenuLateral extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                // Acción al hacer clic en el botón
-                // Por ejemplo, navegar a otra pantalla
+                Navigator.pushNamed(context, 'Tabla');
               },
               child: ListTile(
                 leading: Icon(Icons.schedule),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:horariosmovil/src/pages/add-listadocentes.dart';
 import 'package:horariosmovil/src/pages/home_pages.dart';
 import 'package:horariosmovil/src/pages/inicio.dart';
+import 'package:horariosmovil/src/pages/modificar_horario.dart';
 import 'package:horariosmovil/src/widgets/menu_lateral.dart';
 import 'package:horariosmovil/src/widgets/reset_password.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         "ResetPassword": (BuildContext) => ResetPassword(),
         "Docentes": (BuildContext) => ListaPage(),
         "Inicio": (BuildContext) => InicioPages(),
+        "Tabla": (BuildContext) => ModificarPages(),
       },
     );
   }
