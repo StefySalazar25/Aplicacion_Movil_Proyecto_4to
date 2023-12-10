@@ -8,9 +8,7 @@ class ListaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Teacher> teacherList = [];
     void onDeleteItem(Teacher item) {
-    setState(() {
-      items.remove(item);
-    });
+      teacherList.remove(item);
   }
 
     // Crear objetos de la clase Teacher y agregarlos a la lista
@@ -53,7 +51,7 @@ class ListaPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListaWidget(items: teacherList),
+            child: ListaWidget(items: teacherList, onDeleteItem: onDeleteItem),
           ),
           Align(
             alignment: Alignment.topCenter,

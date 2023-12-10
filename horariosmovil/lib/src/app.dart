@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:horariosmovil/src/pages/add-listadocentes.dart';
 import 'package:horariosmovil/src/pages/home_pages.dart';
 import 'package:horariosmovil/src/pages/inicio.dart';
 import 'package:horariosmovil/src/widgets/menu_lateral.dart';
 import 'package:horariosmovil/src/widgets/reset_password.dart';
-import 'package:horariosmovil/src/widgets/teacher_form.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         "Home": (BuildContext) => HomePages(),
         "MenuLateral": (BuildContext) => MenuLateral(),
         "ResetPassword": (BuildContext) => ResetPassword(),
-        "Docentes": (BuildContext) => TeacherForm(),
+        "Docentes": (BuildContext) => ListaPage(),
         "Inicio": (BuildContext) => InicioPages(),
       },
     );
